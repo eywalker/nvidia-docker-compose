@@ -34,7 +34,7 @@ with open('nvidia-docker-compose.yml', 'w') as f:
 command = ['docker-compose','-f', 'nvidia-docker-compose.yml'] + extras
 
 try:
-    subprocess.run(command)
+    subprocess.call(command)
 except:
     print('Terminating')
 
