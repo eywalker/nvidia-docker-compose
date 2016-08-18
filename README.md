@@ -12,7 +12,7 @@ also it depends on `PyYAML` Python package which would be installed automaticall
 ## Installing
 To install the script, simply run:
 ```bash
-$ pip3 install git+https://github.com/eywalker/nvidia-docker-compose
+$ pip3 install nvidia-docker-compose
 ```
 If you are using system Python, it may be necessary to run the above command with `sudo` upfront.
 
