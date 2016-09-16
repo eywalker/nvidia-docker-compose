@@ -11,10 +11,13 @@ all:
 sdist:
 	python setup.py sdist >/dev/null 2>&1
 
-wheel:
+wheel2:
 	python setup.py bdist_wheel >/dev/null 2>&1
 
-pypi:purge sdist wheel
+wheel3:
+	python3 setup.py bdist_wheel >/dev/null 2>&1
+
+pypi:purge sdist wheel2 wheel3
 	twine upload dist/*
 	
 pypitest: purge sdist wheel
