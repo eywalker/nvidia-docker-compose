@@ -17,10 +17,10 @@ wheel2:
 wheel3:
 	python3 setup.py bdist_wheel >/dev/null 2>&1
 
-pypi:purge sdist wheel2 wheel3
+pypi:clean sdist wheel2 wheel3
 	twine upload dist/*
 	
-pypitest: purge sdist wheel
+pypitest: clean sdist wheel
 	twine upload -r pypitest dist/*
 
 clean:
