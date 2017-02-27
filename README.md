@@ -76,7 +76,7 @@ services:
   {% endfor %}
 ```
 
-and run:
+and specify the target Jinja2 template with `-t`/`--template` flag when you run:
 
 ```bash
 $ nvidia-docker-compose --template docker-compose.yml.jinja ...
@@ -116,10 +116,17 @@ on a 3 GPU machine. The Jinja variable `N_GPU` automatically reflects the availa
 
 ### Generating Compose File Only
 
-If you want to generate GPU-enabled compose file for later use, -G/--generate flag will make nvidia-docker-compose exit after generating the compose file without running docker-compose.
+If you want to generate GPU-enabled compose file for later use, `-G`/`--generate` flag will make `nvidia-docker-compose` exit after generating the compose file without running `docker-compose`.
 
 ```bash
 $ nvidia-docker-compose -G ...
+```
+
+## Additional command line options
+For additional configurations such as specifying alternate `nvidia-docker-plugin` host address, alternate target docker compose file name (instead of the default `nvidia-docker-compose.yml`), refer to the command line help at:
+
+```bash
+$ nvidia-docker-compose -h
 ```
 
 ## How it works
