@@ -59,7 +59,7 @@ Although this feature will allow you to finely control which service sees which 
 ### Using [Jinja2](http://jinja.pocoo.org/) in `docker-compose.yml` file 
 *New from version 0.4.0*
 
-To support the relatively common use case of wanting to launch as many compute containers (with the same configuration) as the number of GPUs avaialble on the target machine, `nvidia-docker-compose` now supports use of [Jinja2](http://jinja.pocoo.org/) in the `docker-compose.yml.jinja` file. Combined with the ability to specify GPU targeting, you can now write `docker-compose` config that adapts flexibility to the GPU availability. For an example if you prepare `docker-compose.yml.jinja` (note the `.jinja` suffix):
+To support the relatively common use case of wanting to launch as many compute containers (with the same configuration) as the number of GPUs available on the target machine, `nvidia-docker-compose` now supports use of [Jinja2](http://jinja.pocoo.org/). Combined with the ability to specify GPU targeting, you can now write `docker-compose` config that adapts flexibility to the GPU availability. For an example if you prepare the following template and save it as `docker-compose.yml.jinja`:
 
 ```yaml
 version: "2"
@@ -76,7 +76,7 @@ services:
   {% endfor %}
 ```
 
-and run `nvidia-docker-compose`, it will automatically pick up the Jinja template, process it and expand it to the following `docker-compose.yml`:
+and run `nvidia-docker-compose --template docker-compose.yml.jinja`, it will pick up the Jinja template, process it and expand it to the following `docker-compose.yml`:
 
 ```yaml
 version: "2"
@@ -107,6 +107,14 @@ services:
       - ./notebooks:/notebooks
 ```
 on a 3 GPU machine. The Jinja variable `N_GPU` automatically reflects the available number of the GPUs on the system. This `docker-compose.yml` is then processed by `nvidia-docker-compose` just like any other config file to launch GPU enabled containers.
+
+### Generating Compose File Only
+
+If you want to generate GPU-enabled compose file for later use, -G/--generate flag will make nvidia-docker-compose exit after generating the compose file without running docker-compose.
+
+```bash
+$ nvidia-docker-compose -G ...
+```
 
 ## How it works
 `nvidia-docker-compose` is a simple Python script that performs two actions:
