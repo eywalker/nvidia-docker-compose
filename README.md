@@ -76,7 +76,13 @@ services:
   {% endfor %}
 ```
 
-and run `nvidia-docker-compose --template docker-compose.yml.jinja`, it will pick up the Jinja template, process it and expand it to the following `docker-compose.yml`:
+and run:
+
+```bash
+$ nvidia-docker-compose --template docker-compose.yml.jinja ...
+```
+
+It will pick up the Jinja template, process it and expand it to the following `docker-compose.yml`:
 
 ```yaml
 version: "2"
