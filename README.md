@@ -9,6 +9,15 @@
 
 also it depends on `PyYAML` Python package which would be installed automatically during the installation step described below.
 
+## Before you install
+`nvidia-docker-compose` depends on `nvidia-docker` to properly function and above all, it depends on all extra Docker volumes that are automatically created when you run `nidia-docker`. Before you install and run `nvidia-docker-compose`, please make sure to test run `nvidia-docker` at least once to ensure that all volumes are set up and are functioning correctly. In particular, I recommend that you run the following command:
+
+```bash
+$ nvidia-docker run --rm nvidia/cuda nvidia-smi
+```
+If this runs and properly lists all available GPUs on your machine, then you are ready to proceed! If not, please refer to `nvidia-docker` documentation and helps to make sure that it functions properly before using `nvidia-docker-compose`.
+
+
 ## Installing
 To install the script, simply run:
 
