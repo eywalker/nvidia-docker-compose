@@ -14,8 +14,17 @@ if sys.version_info[0] == 3:
 else:
     import urllib2 as request
 
+
+def filehandle_if_exists_else_none(fname):
+    try:
+        return open(fname, 'r')
+    except FileNotFoundError:
+        return None
+
+
 parser = argparse.ArgumentParser()
-parser.add_argument('-f', '--file', metavar='INPUT_FILE', type=argparse.FileType('r'), default='docker-compose.yml',
+parser.add_argument('-f', '--file', metavar='INPUT_FILE', type=filehandle_if_exists_else_none,
+                    default='docker-compose.yml',
                     help='Specify an alternate input compose file (default: docker-compose.yml)')
 parser.add_argument('-t', '--template', type=argparse.FileType('r'),
                     help='Specify Jinja2 template file from which compose file will be generated. '
@@ -52,7 +61,6 @@ if args.template is not None:
     config = yaml.load(content)
 else:
     config = yaml.load(args.file)
-
 if config is None:
     raise RuntimeError('Compose file is empty')
 
