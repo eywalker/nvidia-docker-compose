@@ -11,14 +11,16 @@ GPU_DEVICE_PATTERN = re.compile(r'/dev/nvidia\d+')
 # support Python 2 or 3
 if sys.version_info[0] == 3:
     import urllib.request as request
+    file_error = FileNotFoundError
 else:
     import urllib2 as request
+    file_error = IOError
 
 
 def filehandle_if_exists_else_none(fname):
     try:
         return open(fname, 'r')
-    except FileNotFoundError:
+    except file_error:
         return None
 
 
