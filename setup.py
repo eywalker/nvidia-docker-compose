@@ -8,6 +8,6 @@ setup(name='nvidia-docker-compose',
       author_email='edgar.walker@gmail.com',
       license='MIT',
       packages=[],
-      install_requires=['pyyaml', 'jinja2'],
+      install_requires=['docker-compose', 'pyyaml', 'jinja2'],
       scripts=['bin/nvidia-docker-compose']
       )

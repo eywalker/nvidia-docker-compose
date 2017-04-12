@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import subprocess
 import argparse
 import yaml
 import json
@@ -79,7 +78,6 @@ for service, sconf in config['services'].items():
 yaml.safe_dump(config, args.output, default_flow_style=False)
 
 if not args.generate:
-    try:
-        subprocess.call(['docker-compose', '-f', args.output.name] + extras)
-    except:
-        print('Terminating')
+    from compose.cli.main import main as compose_main
+    sys.argv[:] = ['docker-compose', '-f', args.output.name] + extras
+    compose_main()
