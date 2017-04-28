@@ -5,9 +5,8 @@
 `nvidia-docker-compose` requires following dependencies to be installed on the system:
 * Docker engine
 * `nvidia-docker`
-* `docker-compose`
 
-also it depends on `PyYAML` Python package which would be installed automatically during the installation step described below.
+It also depends on the `docker-compose`, `PyYAML` and `Jinja2` Python packages, which would be installed automatically during the installation step described below.
 
 ## Before you install
 `nvidia-docker-compose` depends on `nvidia-docker` to properly function and above all, it depends on all extra Docker volumes that are automatically created when you run `nvidia-docker`. Before you install and run `nvidia-docker-compose`, please make sure to test run `nvidia-docker` at least once to ensure that all volumes are set up and are functioning correctly. In particular, I recommend that you run the following command:
