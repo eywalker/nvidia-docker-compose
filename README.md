@@ -33,7 +33,7 @@ $ nvidia-docker-compose ...
 ```
 Depending on how your system is configured, you may need to run the script with `sudo` (i.e. if you usually need `sudo` to run `docker`, you will need `sudo`).
 
-Running `nvidia-docker-compose` generates a new YAML config file `nvidia-docker-compose.yml` locally. It is safe to delete this file in-between usages and I recommend you add this to your `.gitignore` file if you are going to use `nvidia-docker-compose` withint a Git repository. Once generated, you can also use the `nvidia-docker-compose.yml` directly to launch GPU enabled containers directly with the standard `docker-compose`. You can do so as:
+Running `nvidia-docker-compose` generates a new YAML config file `nvidia-docker-compose.yml` locally. It is safe to delete this file in-between usages and I recommend you add this to your `.gitignore` file if you are going to use `nvidia-docker-compose` within a Git repository. Once generated, you can also use the `nvidia-docker-compose.yml` directly to launch GPU enabled containers directly with the standard `docker-compose`. You can do so as:
 ```bash
 $ docker-compose -f nvidia-docker-compose.yml ...
 ```
