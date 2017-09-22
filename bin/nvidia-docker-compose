@@ -23,10 +23,18 @@ def filehandle_if_exists_else_none(fname):
         return None
 
 
+def open_compose_file(fname):
+    if not fname:
+        return filehandle_if_exists_else_none('docker-compose.yaml') \
+            or filehandle_if_exists_else_none('docker-compose.yml')
+    else:
+        return filehandle_if_exists_else_none(fname)
+
+
 parser = argparse.ArgumentParser()
-parser.add_argument('-f', '--file', metavar='INPUT_FILE', type=filehandle_if_exists_else_none,
-                    default='docker-compose.yml',
-                    help='Specify an alternate input compose file (default: docker-compose.yml)')
+parser.add_argument('-f', '--file', metavar='INPUT_FILE', type=open_compose_file,
+                    default='',
+                    help='Specify an alternate input compose file')
 parser.add_argument('-t', '--template', type=argparse.FileType('r'),
                     help='Specify Jinja2 template file from which compose file will be generated. '
                          '--template argument discards --file argument.')
@@ -39,6 +47,10 @@ parser.add_argument('-G', '--generate', action='store_true',
                     help='Generate output compose file and exit, do not run docker-compose')
 
 (args, extras) = parser.parse_known_args()
+
+if args.file is None:
+    print 'Docker compose file not found!'
+    sys.exit(1)
 
 resp = request.urlopen('http://{0}/docker/cli/json'.format(args.nvidia_docker_host)).read().decode()
 cuda_config = json.loads(resp)
