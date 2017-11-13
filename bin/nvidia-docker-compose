@@ -48,7 +48,7 @@ parser.add_argument('-G', '--generate', action='store_true',
 
 (args, extras) = parser.parse_known_args()
 
-if args.file is None:
+if args.file is None and args.template is None:
     print('Missing docker-compose file.')
     sys.exit(1)
 
