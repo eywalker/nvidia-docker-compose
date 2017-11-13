@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='nvidia-docker-compose',
-      version='0.1.4',
+      version='0.1.5',
       description='GPU enabled docker-compose wrapper',
       url='https://github.com/eywalker/nvidia-docker-compose',
       author='Edgar Y. Walker',
