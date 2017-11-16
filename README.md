@@ -8,6 +8,9 @@
 
 It also depends on the `docker-compose`, `PyYAML` and `Jinja2` Python packages, which would be installed automatically during the installation step described below.
 
+## `nvidia-docker-compose` and `nvidia-docker2`
+As some of you may know, NVIDIA is working on the release of `nvidia-docker2` that integrates much more tightly with Docker infrastructure (more details can be found at the master branch of their project repo https://github.com/NVIDIA/nvidia-docker). One of the huge benefit of this new integration is that you would no longer need `nvidia-docker-compose` to launch docker-compose with GPU capacity. Refer to the issue [#23](https://github.com/eywalker/nvidia-docker-compose/issues/23) for how you could configure `nvidia-docker2` to work with `docker-compose`.
+
 ## Before you install
 `nvidia-docker-compose` depends on `nvidia-docker` to properly function and above all, it depends on all extra Docker volumes that are automatically created when you run `nvidia-docker`. Before you install and run `nvidia-docker-compose`, please make sure to test run `nvidia-docker` at least once to ensure that all volumes are set up and are functioning correctly. In particular, I recommend that you run the following command:
 
@@ -141,4 +144,5 @@ $ nvidia-docker-compose -h
 `nvidia-docker-compose` is a simple Python script that performs two actions:
 * parse `docker-compose` config file (defaults to `docker-compose.yml`) and creates a new config YAML `nvidia-docker-compose.yml` with configurations necessary to run GPU enabled containers. Configuration parameters are read from `nvidia-docker-plugins`.
 * run `docker-compose` with the newly generated config file `nvidia-docker-compose.yml`
+
 
