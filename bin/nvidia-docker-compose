@@ -70,7 +70,9 @@ volume = cuda_config['Volumes'][0].split(':')[0]
 
 if args.template is not None:
     from jinja2 import Template
-    content = Template(args.template.read()).render(N_GPU=n_gpu, GPU_DEVICES=gpu_devices)
+    import os
+    env = dict(os.environ)
+    content = Template(args.template.read()).render(N_GPU=n_gpu, GPU_DEVICES=gpu_devices, ENV=env)
     config = yaml.load(content)
 else:
     config = yaml.load(args.file)
@@ -81,6 +83,9 @@ volumes = config.setdefault('volumes', {})
 volumes[volume] = {'external': True}
 
 for service, sconf in config['services'].items():
+    enable_cuda = True
+    if 'enable_cuda' in sconf and not sconf.pop('enable_cuda'):
+        continue
     sconf.setdefault('volumes', []).extend(cuda_config['Volumes'])
     devices = sconf.setdefault('devices', [])
     if not any(gdev in devices for gdev in gpu_devices):
